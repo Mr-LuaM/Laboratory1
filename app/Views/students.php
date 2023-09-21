@@ -22,7 +22,12 @@
 
     <body>
         <header class="container mt-4">
-            <h1 class="text-center">Student Information Form</h1>
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="text-center">Student Information Form</h1>
+                <a href="/students" class="btn btn-outline-secondary btn-circle btn-sm">
+                    Reset
+                </a>
+            </div>
         </header>
 
         <main class="container mt-4">
@@ -102,63 +107,66 @@
                         </div>
                     </div>
                 </div>
-                <div class=" text-center">
+                <div class=" text-right">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </main>
 
         <footer class="container mt-4">
-            <h2 class="text-center">Display</h2>
+            <h2 class="text-left mb-3">Display</h2>
             <ul class="list-group">
-                <?php foreach ($students as $key => $student): ?>
-                    <li class="list-group-item <?= $key % 2 === 0 ? 'list-group-item-light' : 'list-group-item-dark' ?>">
+                <li class="list-group-item list-group-item-dark">
+                    <div class="row">
+                        <div class="col-1 font-weight-bold">ID</div>
+                        <div class="col font-weight-bold">Student ID</div>
+                        <div class="col font-weight-bold">Name</div>
+                        <div class="col font-weight-bold">Gender</div>
+                        <div class="col font-weight-bold">Course</div>
+                        <div class="col font-weight-bold">Section</div>
+                        <div class="col font-weight-bold">Year</div>
+                        <div class="col text-right font-weight-bold">Action</div>
+                    </div>
+                </li>
+
+                <?php foreach ($students as $student): ?>
+                    <li class="list-group-item">
                         <div class="row">
-                            <div class="col-md-3">
-                                <strong>ID:</strong>
+                            <div class="col-1">
                                 <?= $student['id'] ?>
                             </div>
-                            <div class="col-md-3">
-                                <strong>Student ID:</strong>
+                            <div class="col">
                                 <?= $student['StudID'] ?>
                             </div>
-                            <div class="col-md-3">
-                                <strong>Name:</strong>
+                            <div class="col">
                                 <?= $student['StudName'] ?>
                             </div>
-                            <div class="col-md-3">
-                                <strong>Gender:</strong>
+                            <div class="col">
                                 <?= $student['StudGender'] ?>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <strong>Course:</strong>
+                            <div class="col">
                                 <?= $student['StudCourse'] ?>
                             </div>
-                            <div class="col-md-3">
-                                <strong>Section:</strong>
+                            <div class="col">
                                 <?= $student['StudSection'] ?>
                             </div>
-                            <div class="col-md-3">
-                                <strong>Year:</strong>
+                            <div class="col">
                                 <?= $student['StudYear'] ?>
                             </div>
-                            <div class="col-md-3 text-right">
+                            <div class="col text-right">
                                 <a href="/edit/<?= $student['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
-                                &nbsp;
                                 <a href="/delete/<?= $student['id'] ?>" class="btn btn-danger btn-sm">Delete</a>
                             </div>
                         </div>
                     </li>
                 <?php endforeach; ?>
             </ul>
+
+
         </footer>
 
 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     </body>
 
     </html>
