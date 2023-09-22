@@ -73,6 +73,26 @@ class StudentController extends BaseController
         return redirect()->to('/students');
     }
 
+
+    //pag manage section
+    public function createSection()
+    {
+        $data = [
+            'Section' => $this->request->getPost('section'),
+        ];
+
+        $this->section->insert($data);
+
+        return redirect()->to('/students');
+    }
+
+    public function deleteSection($section)
+    {
+
+        $this->section->delete($section);
+        return redirect()->to('/students');
+    }
+
     public function index()
     {
         //

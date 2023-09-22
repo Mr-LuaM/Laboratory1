@@ -83,21 +83,27 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="section">Section</label>
-                            <select class="form-control" name="StudSection" required>
-                                <option value="" disabled <?= empty($records['StudSection']) ? 'selected' : '' ?>>Choose
-                                    Section</option>
-                                <?php foreach ($sections as $section): ?>
-                                    <option value="<?= $section['Section'] ?>"
-                                        <?= ($section['Section'] == $records['StudSection']) ? 'selected' : '' ?>>
-                                        <?= $section['Section'] ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-
-                            </select>
-
+                            <div class="input-group">
+                                <select class="form-control" name="StudSection" required>
+                                    <option value="" disabled <?= empty($records['StudSection']) ? 'selected' : '' ?>>
+                                        Choose Section</option>
+                                    <?php foreach ($sections as $section): ?>
+                                        <option value="<?= $section['Section'] ?>"
+                                            <?= ($section['Section'] == $records['StudSection']) ? 'selected' : '' ?>>
+                                            <?= $section['Section'] ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" data-toggle="modal"
+                                        data-target="#categoryModal">
+                                        Manage Categories
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
 
                     <div class=" col-md-6">
                         <div class="form-group">
@@ -165,6 +171,47 @@
 
         </footer>
 
+
+        <!-- Modal -->
+        <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Manage Section</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/sectionSave" method="post">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Enter Category" name="section">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit"
+                                        id="addCategory">Add</button>
+                                </div>
+                            </div>
+                        </form>
+                        <ul class="list-group" id="categoryList">
+                            <?php foreach ($sections as $section): ?>
+                                <li class="list-group-item">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <?php echo $section['Section']; ?>
+                                        <a href="/sectionDelete/<?= $section['ID'] ?>" class="btn btn-danger btn-sm">Delete</a>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
     </body>
